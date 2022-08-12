@@ -17,15 +17,37 @@
 
 <body>
     <header>
-        <img src="/assets/html_css_js.png">
-        <h1>Web App</h1>
+        <h1>Poll maker, but with organic free supa</h1>
     </header>
 
     <main>
+        <section id="start">
+            <h1>Create Poll</h1>
+            <form id="create-poll">
+                <label>
+                    Question:
+                    <input type="text" name="question" />
+                </label>
+                <label>
+                    Option A: 
+                    <input type="text" name="option-a" />
+                </label>
+                <label>
+                    Option B: 
+                    <input type="text" name="option-b" />
+                </label>
+                <button>Start Poll</button>
+            </form>
+        </section>
+        <section id="current-poll">
 
+        </section>
+        <section>
+            <h1>Past Polls</h1>
+        </section>
     </main>
 
-    <footer>&copy;2022 Software Developer</footer>
+    <footer>&copy;2022 Dovahteam Developer</footer>
 
     <script type="module" src="app.js"></script>
 </body>
