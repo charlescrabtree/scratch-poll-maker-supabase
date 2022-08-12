@@ -18,7 +18,7 @@ let optionBVotes = 0;
 createForm.addEventListener('submit', (e) => {
     e.preventDefault();
 
-    const data = newFormData(createForm);
+    const data = new FormData(createForm);
     question = data.get('question-input');
     optionA = data.get('option-a');
     optionB = data.get('option-b');
@@ -62,9 +62,18 @@ closePoll.addEventListener('click', async () => {
     optionBVotes = 0;
     displayCurrentPoll();
     displayPolls();   
+
+    return resp.data;
 });
 
+async function displayPolls() {
+    const pollList = document.getElementById('poll-list');
+    pollList.textContent = '';
+    const polls = await getPolls();
+    for (let poll of polls) {
+        const div = renderPoll(poll);
+        pollList.append(div);
+    }
+}
 
-  // get user input
-  // use user input to update state 
-  // update DOM to reflect the new state
+displayPolls();
