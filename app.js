@@ -1,6 +1,6 @@
 // import functions and grab DOM elements
-import { createNewPoll, getPolls } from "./fetch-utils.js";
-import { renderPoll } from "./render-utils.js";
+import { createNewPoll, getPolls } from './fetch-utils.js';
+import { renderPoll } from './render-utils.js';
 
 const createForm = document.getElementById('create-poll');
 const voteA = document.getElementById('vote-a');
@@ -19,11 +19,23 @@ createForm.addEventListener('submit', (e) => {
     e.preventDefault();
 
     const data = newFormData(createForm);
-    question = data.get('question');
+    question = data.get('question-input');
     optionA = data.get('option-a');
     optionB = data.get('option-b');
 
+    displayCurrentPoll();
 });
+
+function displayCurrentPoll() {
+    const questionEl = document.getElementById('question');
+    questionEl.textContent = question;
+    const optionAEl = document.getElementById('option-a');
+    optionAEl.textContent = optionA;
+    const optionBEl = document.getElementById('option-b');
+    optionBEl.textContent = optionB;
+    voteA.textContent = optionAVotes;
+    voteB.textContent = optionBVotes;
+}
 
 voteA.addEventListener('click', () => {
     optionAVotes++;
@@ -49,10 +61,10 @@ closePoll.addEventListener('click', async () => {
     optionAVotes = 0;
     optionBVotes = 0;
     displayCurrentPoll();
-    displayPolls();
-
-    
+    displayPolls();   
 });
+
+
   // get user input
   // use user input to update state 
   // update DOM to reflect the new state
