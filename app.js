@@ -15,6 +15,44 @@ let optionAVotes = 0;
 let optionBVotes = 0;
 
 // set event listeners 
+createForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    const data = newFormData(createForm);
+    question = data.get('question');
+    optionA = data.get('option-a');
+    optionB = data.get('option-b');
+
+});
+
+voteA.addEventListener('click', () => {
+    optionAVotes++;
+    voteA.textContent = optionAVotes;
+});
+
+voteB.addEventListener('click', () => {
+    optionBVotes++;
+    voteB.textContent = optionBVotes;
+});
+
+closePoll.addEventListener('click', async () => {
+    const data = {
+        question,
+        option_a: optionA,
+        option_b: optionB,
+        option_a_votes: optionAVotes,
+        option_b_votes: optionBVotes,
+    };
+    const resp = await createNewPoll(data);
+    question = '';
+    optionA = '';
+    optionAVotes = 0;
+    optionBVotes = 0;
+    displayCurrentPoll();
+    displayPolls();
+
+    
+});
   // get user input
   // use user input to update state 
   // update DOM to reflect the new state
